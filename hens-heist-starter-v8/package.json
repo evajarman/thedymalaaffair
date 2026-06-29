@@ -1,9 +1,0 @@
-{
-  "name": "hens-heist-dymala-affair",
-  "version": "4.0.0",
-  "private": true,
-  "description": "Mobile scavenger hunt for The Dymala Affair.",
-  "dependencies": {
-    "@netlify/blobs": "^9.1.2"
-  }
-}
