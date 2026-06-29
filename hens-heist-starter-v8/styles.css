@@ -1,0 +1,648 @@
+:root{
+  --bg:#f1dfdc;
+  --paper:#fffaf6;
+  --ink:#2b1719;
+  --muted:#6b5558;
+  --burgundy:#8b1414;
+  --deep:#341015;
+  --line:#ead8d3;
+  --gold:#b88746;
+  --shadow:0 18px 45px rgba(43,23,25,.13);
+}
+*{box-sizing:border-box}
+body{background:
+  linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
+  url("./assets/papertexture.png");
+background-size: 520px auto;
+background-repeat: repeat;
+background-position: top center;}
+button{font:inherit}
+.page-shell{width:min(760px,100%);margin:0 auto;padding:20px 14px 36px}
+.hero{position:relative;text-align:center;padding:24px 8px 16px}
+.eyebrow,.case-label{text-transform:uppercase;letter-spacing:.14em;font:700 12px/1.2 system-ui,sans-serif;color:var(--burgundy)}
+h1{font:900 clamp(42px,12vw,78px)/.86 system-ui,sans-serif;text-transform:uppercase;letter-spacing:-.04em;margin:8px 0 0;color:var(--deep)}
+.script{font-family:Georgia,serif;font-style:italic;font-size:30px;color:var(--burgundy);margin:2px 0 0}
+.doodle{position:absolute;color:#fff;font-size:44px;opacity:.9}.top-left{left:8px;top:16px}.top-right{right:12px;top:22px}
+.card,.progress-card{background:rgba(255,250,246,.92);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:22px;margin:14px 0}
+.intro-card{text-align:center}.intro-card h2{font:900 32px/1.05 system-ui,sans-serif;text-transform:uppercase;margin:10px 0 14px}.intro-card p{font-size:18px;line-height:1.35}
+.primary,.team-card,.challenge-card,.bar-card{width:100%;border:0;border-radius:18px;padding:16px;background:var(--deep);color:#fff;font:800 16px/1 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.04em;margin-top:12px;cursor:pointer}
+.ghost{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:10px 14px;color:var(--muted)}
+.team-grid{display:grid;gap:12px}.team-card{text-align:left;background:var(--paper);color:var(--ink);border:1px solid var(--line);box-shadow:none;font-size:20px}.team-card small{display:block;color:var(--muted);font:400 13px system-ui,sans-serif;margin-top:5px}
+.rules{padding-left:22px;font-size:17px;line-height:1.45}.rules li{margin:8px 0}
+.status-panel{display:flex;justify-content:space-between;align-items:center;gap:14px}.status-panel h2{margin:4px 0 0;font:900 28px/1 system-ui,sans-serif;text-transform:uppercase}.progress-card p{margin:0 0 10px;font:700 14px system-ui,sans-serif}.progress{height:12px;background:#ead8d3;border-radius:99px;overflow:hidden}.progress span{display:block;height:100%;width:0;background:var(--burgundy);transition:.3s}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}.tab{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:11px 8px;color:var(--muted);font:800 12px system-ui,sans-serif;text-transform:uppercase}.tab.active{background:var(--burgundy);color:#fff;border-color:var(--burgundy)}
+.challenge-grid,.clue-list,.bar-list{display:grid;gap:12px}.challenge-card{background:var(--paper);color:var(--ink);border:1px solid var(--line);text-align:left;box-shadow:none;text-transform:none;font:600 17px/1.18 Georgia,serif}.challenge-card.done{background:#f7efeb;color:var(--muted)}.challenge-card b{display:block;font:900 12px system-ui,sans-serif;color:var(--burgundy);text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px}.challenge-card .status{display:block;margin-top:10px;font:800 12px system-ui,sans-serif;text-transform:uppercase;color:var(--gold)}
+.clue{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:16px}.clue b{display:block;color:var(--burgundy);font:900 12px system-ui,sans-serif;text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px}.locked{opacity:.52}.bar-card{background:var(--paper);color:var(--ink);border:1px solid var(--line);box-shadow:none;text-align:left;text-transform:none}.bar-card.wrong{opacity:.5;text-decoration:line-through}.result{position:fixed;inset:0;background:rgba(43,23,25,.82);display:grid;place-items:center;padding:20px;z-index:5}.result-card{background:var(--paper);border-radius:24px;padding:24px;max-width:420px;text-align:center;box-shadow:var(--shadow)}.result-card h2{font:900 34px/1 system-ui,sans-serif;text-transform:uppercase}.success h2{color:var(--burgundy)}.fail h2{color:var(--deep)}
+@media (min-width:620px){.team-grid,.challenge-grid,.bar-list{grid-template-columns:repeat(2,1fr)}}
+
+/* Header illustrations borrowed from the original visual direction */
+.header-illustrations{position:absolute;inset:0;pointer-events:none;overflow:hidden}.heist-icon{position:absolute;fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;opacity:.88}.hat-mask{left:-2px;top:6px;width:112px;color:#fff}.diamonds{right:-4px;top:0;width:116px;color:#fff}.safe{left:50%;top:98px;transform:translateX(-50%);width:104px;color:#8b1414;opacity:.2}.diamonds .diamond{stroke-width:6}.diamonds circle{fill:currentColor;stroke:none}.intro-card{margin-top:78px}.team-card{display:grid;grid-template-columns:54px 1fr;align-items:center;column-gap:12px;min-height:116px}.team-emoji{grid-row:1 / span 2;font-size:44px;line-height:1;text-align:center}.team-name{display:block;font:900 20px/1 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.04em}.team-card small{grid-column:2}.modal-card{position:relative}.modal-close{position:absolute;top:12px;right:14px;border:0;background:transparent;color:var(--ink);font:400 30px/1 system-ui,sans-serif;cursor:pointer}.modal-actions{display:grid;grid-template-columns:1fr;gap:10px;margin-top:18px}.modal-actions .primary,.modal-actions .ghost{margin-top:0}.modal-button-secondary{width:100%;font:800 14px/1 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:15px;border-radius:16px}.dots{display:flex;justify-content:center;gap:9px;margin:18px 0 4px}.dots span{width:10px;height:10px;border-radius:999px;background:var(--burgundy);animation:pulse 1s infinite ease-in-out}.dots span:nth-child(2){animation-delay:.15s}.dots span:nth-child(3){animation-delay:.3s}@keyframes pulse{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:1;transform:scale(1)}}
+@media (min-width:620px){.hat-mask{left:40px}.diamonds{right:42px}.safe{width:118px}.intro-card{margin-top:86px}.modal-actions{grid-template-columns:1fr 1fr}}
+
+/* v3: Dymala Affair gameplay polish */
+.tabs{grid-template-columns:repeat(4,1fr)}
+.tab{font-size:11px;padding:10px 5px}
+.challenge-card{padding:0;perspective:900px;min-height:178px;background:transparent;border:0;position:relative;overflow:visible}
+.challenge-card .card-inner{display:block;position:relative;min-height:178px;transform-style:preserve-3d;transition:transform .72s cubic-bezier(.2,.85,.2,1)}
+.challenge-card.done .card-inner{transform:rotateY(180deg)}
+.challenge-card .card-front,.challenge-card .card-back{position:absolute;inset:0;border:1px solid var(--line);border-radius:18px;background:var(--paper);padding:16px;backface-visibility:hidden;box-shadow:0 8px 18px rgba(43,23,25,.06)}
+.challenge-card .card-back{transform:rotateY(180deg);display:grid;place-items:center;text-align:center;background:var(--burgundy);color:#fff8ef;}
+.challenge-card .card-back strong{font:900 26px/1 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.04em;border:3px solid var(--burgundy);padding:8px 12px;transform:rotate(-7deg);opacity:.9}
+.challenge-card .card-back em{font:900 12px/1 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.16em;color:var(--gold);font-style:normal}
+.challenge-card.just-completed .card-inner{animation:caseFlip .85s cubic-bezier(.2,.85,.2,1)}
+@keyframes caseFlip{0%{transform:rotateY(0)}100%{transform:rotateY(180deg)}}
+.protocol-button{width:100%;margin:0 0 12px;text-align:center;text-transform:uppercase;font:800 12px system-ui,sans-serif;letter-spacing:.08em}
+.clue p{margin:8px 0 0;line-height:1.35}.grade{display:inline-block;border-radius:999px;padding:5px 8px;margin-bottom:6px;font:800 11px system-ui,sans-serif;text-transform:uppercase;letter-spacing:.06em;background:#f4ebe6;color:var(--muted)}
+.clue.confirmed{border-left:6px solid #2f7a44}.clue.witness{border-left:6px solid #c6a441}.clue.field{border-left:6px solid #c57535}.clue.anonymous{border-left:6px solid #b83535}.clue.police{border-left:6px solid #27211f}.grade-list{padding:0;margin:0;text-align:left;list-style:none}.grade-list li{display:grid;gap:4px;padding:10px 0;border-bottom:1px solid var(--line)}.grade-list li:last-child{border-bottom:0}.grade-list strong{font:900 12px system-ui,sans-serif;text-transform:uppercase;color:var(--burgundy);letter-spacing:.05em}.grade-list span{font:400 14px/1.35 system-ui,sans-serif;color:var(--ink)}
+.leaderboard{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:16px;display:grid;gap:12px}.leader-row{display:grid;grid-template-columns:1fr auto;gap:6px;align-items:center;font:800 14px system-ui,sans-serif}.leader-row b{color:var(--burgundy)}.mini-progress{grid-column:1/-1;height:10px;background:#ead8d3;border-radius:999px;overflow:hidden}.mini-progress i{display:block;height:100%;background:var(--burgundy);border-radius:inherit}.leader-note{margin:4px 0 0;color:var(--muted);font:400 12px/1.35 system-ui,sans-serif}
+@media (max-width:380px){.tab{font-size:10px}.tabs{gap:5px}.challenge-card{min-height:200px}.challenge-card .card-inner{min-height:200px}}
+
+/* v5: detective-chic clue reveal animation + subtle vibration support */
+.clue-reveal-overlay{background:radial-gradient(circle at 50% 25%, rgba(244,231,227,.25), rgba(43,23,25,.86) 58%);}
+.clue-reveal-card{position:relative;width:min(430px,100%);background:var(--paper);border:1px solid var(--line);border-radius:26px;padding:22px;box-shadow:var(--shadow);text-align:center;overflow:hidden;animation:revealPop .34s ease-out both}
+.clue-reveal-card:before{content:"";position:absolute;inset:-40% -20% auto;height:170px;background:linear-gradient(110deg, transparent 10%, rgba(255,255,255,.72) 45%, transparent 70%);transform:rotate(-8deg);animation:spotlightSweep 1.4s .15s ease-out both;pointer-events:none}
+.reveal-folder{position:relative;margin:16px 0 18px;padding:32px 18px 22px;background:#fff6ee;border:1px solid #e4cfc8;border-radius:18px;text-align:left;box-shadow:0 12px 24px rgba(43,23,25,.1);animation:fileSlide .52s .18s cubic-bezier(.2,.85,.2,1) both}
+.folder-tab{position:absolute;top:-13px;left:18px;background:var(--burgundy);color:#fff;border-radius:10px 10px 0 0;padding:8px 14px;font:900 11px system-ui,sans-serif;letter-spacing:.12em}
+.magnifier{position:absolute;right:14px;top:8px;color:rgba(139,20,20,.18);font:900 78px/1 Georgia,serif;transform:rotate(-12deg)}
+.reveal-grade{position:relative;z-index:1}.reveal-folder p{position:relative;z-index:1;margin:13px 0 12px;font-size:18px;line-height:1.35;color:var(--ink)}
+.stamp-small{display:inline-block;position:relative;z-index:1;border:2px solid var(--burgundy);color:var(--burgundy);padding:7px 10px;border-radius:4px;font:900 12px/1 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.14em;transform:rotate(-5deg);animation:stampIn .28s .72s ease-out both}
+.panther-trail{position:absolute;right:20px;top:14px;display:flex;gap:7px;color:rgba(139,20,20,.28);font-size:22px;transform:rotate(-12deg)}
+.panther-trail span{opacity:0;animation:pawAppear .3s ease-out forwards}.panther-trail span:nth-child(2){animation-delay:.16s}.panther-trail span:nth-child(3){animation-delay:.32s}
+@keyframes revealPop{from{opacity:0;transform:scale(.96) translateY(8px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes fileSlide{from{opacity:0;transform:translateY(18px) rotate(-1.5deg)}to{opacity:1;transform:translateY(0) rotate(0)}}
+@keyframes stampIn{0%{opacity:0;transform:scale(1.8) rotate(-12deg)}75%{opacity:1;transform:scale(.92) rotate(-5deg)}100%{opacity:1;transform:scale(1) rotate(-5deg)}}
+@keyframes spotlightSweep{from{transform:translateX(-80%) rotate(-8deg)}to{transform:translateX(120%) rotate(-8deg)}}
+@keyframes pawAppear{from{opacity:0;transform:translateY(8px) scale(.8)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media (prefers-reduced-motion: reduce){.clue-reveal-card,.reveal-folder,.stamp-small,.panther-trail span,.clue-reveal-card:before{animation:none!important}}
+
+/* v7 minimalist header */
+.hero{position:relative;text-align:center;padding:72px 20px 48px;min-height:auto;background:transparent}
+.header-illustrations{display:none!important}
+.hero:before,.hero:after{display:none!important;content:none}
+.hero .eyebrow,.hero h1,.hero .script{position:relative;z-index:1}
+.hero h1{text-shadow:none}
+.hero .script{font-size:clamp(26px,7vw,38px)}
+.hero .eyebrow{margin-top:6px}
+.hero-card{
+
+    width:min(90%,760px);
+
+    margin:0 auto;
+
+    background:rgba(252,248,244,.97);
+
+    padding:48px 60px;
+
+    border-radius:36px;
+
+    box-shadow:0 18px 40px rgba(0,0,0,.25);
+
+    border:1px solid rgba(80,20,20,.12);
+transform:translateY(10px);
+
+}
+.hero-card h1{
+    margin-top:16px;
+}
+
+.hero-card .script{
+    margin-bottom:8px;
+}
+
+.game-card{
+
+    width:min(94%,1100px);
+
+    margin:40px auto 70px;
+
+    background:rgba(252,248,244,.96);
+
+    border-radius:32px;
+
+    padding:42px;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.22);
+
+    border:1px solid rgba(80,20,20,.12);
+    font-family: "Inter",sans-serif;
+
+}
+/* ---------- Interface Typography ---------- */
+
+main,
+
+.game-card,
+
+.status-panel,
+
+.progress-card,
+
+.tabs,
+
+.tab,
+
+.challenge-card,
+
+.clue-card,
+
+button,
+
+input,
+
+select,
+
+textarea{
+
+    font-family:"Inter",sans-serif;
+
+}
+
+
+/* v8: Save-the-date inspired stationery system
+   Quiet luxury, dark gem field, cream cotton-paper panels, typewriter labels. */
+:root{
+  --paper:#fff9f2;
+  --paper-soft:#fbf3ec;
+  --ink:#211416;
+  --muted:#6d5a58;
+  --burgundy:#6f161d;
+  --deep:#2b0d12;
+  --line:rgba(73,25,30,.18);
+  --gold:#b08d57;
+  --shadow:0 18px 36px rgba(0,0,0,.18);
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    color:var(--ink);
+    background:
+        linear-gradient(rgba(96,58,66,.08), rgba(96,58,66,.08)),
+        url("./assets/papertexture.png");
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center top;
+    background-attachment:fixed;
+    background-color:#f1eee8;
+}
+
+.page-shell{
+  width:min(1120px,100%);
+  padding:34px 18px 54px;
+}
+
+.hero{
+  padding:44px 20px 54px;
+}
+
+.hero-card,
+.card,
+.game-card,
+.result-card,
+.clue-reveal-card{
+  position:relative;
+  isolation:isolate;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(255,255,255,.52), transparent 28%),
+    linear-gradient(135deg, rgba(255,255,255,.38), rgba(255,255,255,0) 42%),
+    rgba(255,249,242,.965);
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+}
+
+.hero-card::after,
+.card::after,
+.game-card::after,
+.result-card::after,
+.clue-reveal-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  opacity:.34;
+  background-image:
+    radial-gradient(circle at 18% 26%, rgba(60,30,20,.10) 0 1px, transparent 1px),
+    radial-gradient(circle at 74% 62%, rgba(60,30,20,.07) 0 1px, transparent 1px);
+  background-size:18px 22px, 24px 30px;
+  border-radius:inherit;
+}
+
+.hero-card{
+  width:min(92%,760px);
+  margin:0 auto;
+  padding:46px 54px 42px;
+  border-radius:14px;
+  transform:none;
+}
+
+.eyebrow,
+.case-label,
+.team-card small,
+.challenge-card b,
+.clue b,
+.grade,
+.tab,
+.primary,
+.ghost,
+.leader-note,
+.progress-card p,
+.folder-tab{
+  font-family:"Special Elite", "Courier New", monospace!important;
+  font-weight:400!important;
+  letter-spacing:.08em;
+}
+
+.hero .eyebrow{
+  margin:0 0 20px;
+  color:var(--burgundy);
+  font-size:13px;
+  text-transform:uppercase;
+}
+
+.hero h1{
+  font-family:"Inter",system-ui,sans-serif;
+  font-size:clamp(48px,9vw,90px);
+  line-height:.86;
+  font-weight:900;
+  letter-spacing:-.06em;
+  color:var(--deep);
+  text-transform:uppercase;
+  margin:0;
+}
+
+.hero .script,
+.script{
+  font-family:"Pinyon Script", Georgia, serif;
+  font-style:normal;
+  font-size:clamp(42px,7vw,66px);
+  line-height:.9;
+  color:var(--burgundy);
+  margin:12px 0 0;
+}
+
+.card,
+.progress-card,
+.game-card{
+  border-radius:14px;
+  box-shadow:0 16px 32px rgba(0,0,0,.16);
+}
+
+.card{
+  padding:32px;
+}
+
+.intro-card{
+  max-width:760px;
+  margin:18px auto 0;
+  text-align:center;
+}
+
+.intro-card h2,
+.status-panel h2,
+.result-card h2{
+  font-family:"Inter",system-ui,sans-serif;
+  font-weight:900;
+  letter-spacing:-.03em;
+  color:#141111;
+}
+
+.intro-card h2{
+  font-size:clamp(32px,5vw,46px);
+  margin:20px 0 18px;
+}
+
+.intro-card p,
+.rules,
+.result-card p,
+.clue p{
+  font-family:"Inter",system-ui,sans-serif;
+  font-size:17px;
+  line-height:1.55;
+}
+
+.primary,
+.team-card,
+.challenge-card,
+.bar-card{
+  border-radius:6px;
+}
+
+.primary{
+  background:var(--burgundy);
+  color:#fff;
+  border:1px solid var(--burgundy);
+  box-shadow:none;
+  padding:16px 20px;
+}
+
+.ghost{
+  background:transparent;
+  border:1px solid var(--line);
+  border-radius:4px;
+  color:var(--deep);
+}
+
+.game-card{
+  width:min(96%,1060px);
+  margin:18px auto 72px;
+  padding:36px;
+  border-radius:14px;
+  font-family:"Inter",system-ui,sans-serif;
+}
+
+.status-panel,
+.progress-card{
+  background:transparent;
+  border:0;
+  box-shadow:none;
+  border-radius:0;
+  padding:0;
+  margin:0 0 24px;
+}
+
+.status-panel{
+  border-bottom:1px solid var(--line);
+  padding-bottom:24px;
+}
+
+.status-panel h2{
+  margin:8px 0 0;
+  font-size:clamp(34px,5vw,54px);
+}
+
+.case-label{
+  color:var(--burgundy);
+  font-size:13px;
+  text-transform:uppercase;
+}
+
+.progress{
+  height:8px;
+  background:rgba(111,22,29,.12);
+}
+
+.progress span,
+.mini-progress i{
+  background:var(--gold);
+}
+
+.tabs{
+    display:flex;
+    align-items:flex-end;
+    gap:8px;
+    margin:36px 0 0;
+    border-bottom:1px solid rgba(90,45,45,.18);
+    padding-left:10px;
+}
+
+.tab{
+
+    background:#f2ebe3;
+    color:var(--deep);
+    border:1px solid rgba(90,45,45,.18);
+    border-bottom:none;
+    border-radius:14px 14px 0 0;
+    padding:14px 28px 12px;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    transform:translateY(1px);
+    transition:.2s ease;
+    cursor:pointer;
+    flex:1;
+}
+.tab:last-child{border-right:0}
+.tab.active{
+    background:var(--burgundy);
+    color:#fffdf8;
+    border-color:var(--burgundy);
+    box-shadow:0 -2px 8px rgba(70,20,20,.12);
+    position:relative;
+    z-index:10;
+    padding-top:18px;
+    padding-bottom:14px;
+}
+#tab-content{
+
+    border-top:none;
+
+    padding-top:36px;
+
+}
+
+.team-card{
+  min-height:126px;
+  border:1px solid var(--line);
+  background:rgba(255,249,242,.75);
+  padding:22px;
+  box-shadow:none;
+}
+.team-name{
+  font-family:"Inter",system-ui,sans-serif;
+  font-size:18px;
+  font-weight:900;
+}
+.team-emoji{filter:saturate(.82);}
+
+.challenge-grid,
+.clue-list,
+.bar-list{gap:16px}
+
+.challenge-card{
+  min-height:184px;
+}
+.challenge-card .card-front,
+.challenge-card .card-back,
+.clue,
+.bar-card,
+.leaderboard{
+  background:rgba(255,252,248,.96);
+  border:1px solid var(--line);
+  border-radius:8px;
+  box-shadow:none;
+}
+.challenge-card .card-front,
+.challenge-card .card-back{
+  padding:22px;
+}
+.challenge-card .card-front{
+  font-family:"Inter",system-ui,sans-serif;
+  font-size:18px;
+  line-height:1.38;
+  font-weight:600;
+}
+.challenge-card b,
+.clue b{
+  color:var(--burgundy);
+  font-size:12px;
+}
+.challenge-card .status{
+  margin-top:18px;
+  color:var(--gold);
+}
+.challenge-card .card-back strong{
+  border-color:var(--gold);
+  color:var(--burgundy);
+  font-family:"Special Elite","Courier New",monospace;
+  font-size:23px;
+  border-radius:2px;
+}
+
+.clue{
+  padding:22px;
+}
+.grade{
+  border-radius:3px;
+  background:rgba(176,141,87,.15);
+  color:var(--deep);
+}
+
+.bar-card{
+  padding:18px;
+  font-family:"Inter",system-ui,sans-serif;
+  font-weight:700;
+}
+
+.result{
+  background:rgba(20,10,12,.78);
+}
+.result-card{
+  border-radius:12px;
+}
+.modal-close{
+  font-family:"Inter",system-ui,sans-serif;
+}
+
+.clue-reveal-card{
+  border-radius:12px;
+}
+.reveal-folder{
+  background:rgba(255,249,242,.78);
+  border:1px solid var(--line);
+  border-radius:8px;
+}
+.stamp-small{
+  color:#fff8ef;
+border:3px solid #fff8ef;
+}
+
+@media (max-width:620px){
+  .page-shell{padding:18px 12px 38px}
+  .hero{padding:28px 4px 38px}
+  .hero-card{width:100%;padding:34px 22px 30px;border-radius:12px}
+  .hero h1{font-size:clamp(44px,16vw,66px)}
+  .hero .script{font-size:clamp(38px,12vw,52px)}
+  .game-card{width:100%;padding:22px;border-radius:12px}
+  .tabs{grid-template-columns:repeat(2,1fr)}
+  .tab:nth-child(2){border-right:0}
+  .tab:nth-child(1),.tab:nth-child(2){border-bottom:1px solid var(--line)}
+  .status-panel{align-items:flex-start}
+  .status-panel h2{font-size:34px}
+}
+
+.hero-divider{
+
+    display:block;
+
+    width:92%;
+
+    max-width:950px;
+
+    margin:0 auto 28px;
+
+    opacity:.95;
+
+}
+/* ---------- Mobile fixes ---------- */
+
+@media (max-width:700px){
+
+  .hero{
+    padding:28px 12px 24px;
+  }
+
+  .hero-card{
+    width:calc(100% - 24px);
+    padding:28px 18px;
+    border-radius:18px;
+  }
+
+  .hero h1{
+    font-size:clamp(42px,14vw,72px);
+    line-height:.9;
+  }
+
+  .hero .script{
+    font-size:clamp(32px,10vw,54px);
+    line-height:.9;
+  }
+
+  .game-card{
+    width:calc(100% - 24px);
+    margin:24px auto 48px;
+    padding:22px 16px;
+    border-radius:18px;
+    overflow:hidden;
+  }
+
+  .status-panel{
+    display:block;
+  }
+
+  .status-panel h2{
+    font-size:clamp(38px,13vw,64px);
+    line-height:.9;
+    word-break:normal;
+  }
+
+  .ghost{
+    margin-top:14px;
+  }
+
+  .tabs{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    border-bottom:0;
+    padding-left:0;
+    margin:28px 0 20px;
+  }
+
+  .tab{
+    width:100%;
+    padding:13px 8px;
+    border:1px solid rgba(90,45,45,.18);
+    border-radius:14px;
+    font-size:11px;
+    line-height:1.1;
+    white-space:normal;
+    transform:none;
+  }
+
+  .tab.active{
+    padding:13px 8px;
+    transform:none;
+    border-radius:14px;
+  }
+
+  #tab-content{
+    padding-top:10px;
+  }
+
+  .challenge-grid,
+  .cards-grid,
+  .bar-grid,
+  .clue-grid{
+    grid-template-columns:1fr;
+  }
+
+  .challenge-card .card-front,
+  .challenge-card .card-back,
+  .clue,
+  .bar-card,
+  .leaderboard{
+    min-width:0;
+  }
+}

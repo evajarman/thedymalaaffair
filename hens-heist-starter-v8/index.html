@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hens Heist: The Dymala Affair</title>
+  <meta name="description" content="A Paris bachelorette scavenger hunt for Alanna Dymala." />
+  <link rel="manifest" href="data:application/manifest+json,{&quot;name&quot;:&quot;Hens Heist&quot;,&quot;short_name&quot;:&quot;Heist&quot;,&quot;start_url&quot;:&quot;.&quot;,&quot;display&quot;:&quot;standalone&quot;,&quot;background_color&quot;:&quot;%23f4e7e3&quot;,&quot;theme_color&quot;:&quot;%238b1414&quot;}" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Pinyon+Script&family=Special+Elite&display=swap"
+      rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+<header class="hero">
+  <div class="hero-card">
+
+    <img
+      src="assets/diamonddivider.png"
+      class="hero-divider"
+      alt=""
+    >
+
+    <p class="eyebrow">Paris · 29 August 2026</p>
+    <h1>Hens Heist</h1>
+    <p class="script">The Dymala Affair</p>
+
+  </div>
+</header>
+
+    <main id="app" aria-live="polite"></main>
+  </div>
+
+  <template id="welcome-template">
+    <section class="card intro-card">
+      <p class="case-label">Case File Opened</p>
+      <h2>The jewels have been stolen.</h2>
+      <p>At lunch at <strong>Le Carreau</strong>, a group of thieves absconded with the jewels and vanished into Paris.</p>
+      <p>They are hiding in one of the suspect bars, guarding the kitty.</p>
+      <button class="primary" data-action="start">Begin the investigation</button>
+    </section>
+  </template>
+
+  <template id="team-template">
+    <section class="card">
+      <p class="case-label">Step 1</p>
+      <h2>Choose your detective crew</h2>
+      <div class="team-grid" id="team-grid"></div>
+    </section>
+  </template>
+
+  <template id="brief-template">
+    <section class="card">
+      <p class="case-label">Mission Brief</p>
+      <h2 id="brief-team-title"></h2>
+      <ol class="rules">
+        <li>Complete challenges with your team.</li>
+        <li>Send proof to WhatsApp: <strong>+33 XX XX XX XX XX</strong>.</li>
+        <li>Tap “Submit evidence” and confirm once proof has been sent.</li>
+        <li>Use the clues to identify the thieves’ bar.</li>
+        <li>If you guess wrong, take a shot and keep going.</li>
+      </ol>
+      <button class="primary" data-action="show-board">Open the evidence board</button>
+    </section>
+  </template>
+
+<template id="dashboard-template">
+
+    <div class="game-card">
+
+        <section class="status-panel">
+      <div>
+        <p class="case-label" id="team-label"></p>
+        <h2>Evidence Board</h2>
+      </div>
+      <button class="ghost" data-action="reset">Reset</button>
+    </section>
+    <section class="progress-card">
+      <p><span id="completed-count">0</span>/15 intelligence files recovered</p>
+      <div class="progress"><span id="progress-bar"></span></div>
+    </section>
+    <nav class="tabs">
+      <button class="tab active" data-tab="challenges">Challenges</button>
+      <button class="tab" data-tab="clues">Clue Vault</button>
+      <button class="tab" data-tab="bars">Suspect Bars</button>
+      <button class="tab" data-tab="leaderboard">Progress</button>
+    </nav>
+    <section id="tab-content"></section>
+
+    </div>
+
+</template>
+
+  <script src="app.js"></script>
+</body>
+</html>
