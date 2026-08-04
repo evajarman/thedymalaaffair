@@ -17,21 +17,18 @@ const GRADES = {
 };
 
 const CHALLENGES = [
-  'Get a piggyback ride from someone. Consensual, safe, sober-ish.',
-  'Ask a stranger to rate Arthur out of 10 based only on a photo.',
-  'Spot a man with a moustache that feels like a personality trait.',
-  'Ask a stranger to teach you a French pick-up line.',
-  'Someone in the group tries to speak French and absolutely butchers it.',
-  'Find someone who has had a one-night stand in Paris and get the story.',
-  'Buy an ice cream in French.',
-  'A Parisian rolls their eyes at you. Free square, to be honest.',
-  'See someone smoking indoors even though it is illegal.',
-  'Spot someone carrying a baguette and ask if it is for romance or dinner.',
-  'Get a kiss on the hand from someone dramatically over-the-top.',
-  'Get someone to tell you the most romantic thing they have ever done, or had done to them.',
-  'Spot a man with a tiny dog and ask its name.',
-  'Someone in the group gets a free shot from a bartender.',
-  'Take a photo with a neon sign that looks vaguely philosophical.'
+  'Ask for a dildo in French at a sex shop.',
+  'Get a photo with a French police officer.',
+  'Buy a croissant from Urban Bakery – Goncourt.',
+  'Get a video of a stranger wishing Alanna and Arthur bonne chance for their wedding.',
+  'Score exactly 20 with a dart.',
+  'Bum a cigarette from a French local.',
+  'Give your number to someone (single ladies only 😊).',
+  'Get a scoop of ice cream from Folderol.',
+  'Ride the 69 bus (photo evidence).',
+  'Get a margarita from El Guacamole.',
+  'Get a video of a stranger offering Alanna and Arthur marriage advice.',
+  'Do something gravity-defying at the Cité des Sciences (photo or video).'
 ];
 
 const BARS = [
@@ -46,42 +43,41 @@ const CLUE_TIERS = [
     { grade: 'witness', text: 'A witness insists the thieves stayed within easy walking distance of Le Carreau.' },
     { grade: 'confirmed', text: 'The thieves chose somewhere where the drinks matter more than dinner.' },
     { grade: 'anonymous', text: 'A local claims one suspect fled on an electric scooter while looking “suspiciously pleased”.' },
-    { grade: 'field', text: 'Investigators can safely rule out the rooftop option.' },
-    { grade: 'witness', text: 'No cat was seen near the stolen jewels. The black cat lead looks weak.' }
+    { grade: 'field', text: 'Investigators can safely rule out the rooftop option.' }
   ],
   [
     { grade: 'confirmed', text: 'The getaway did not involve citrus. Dirty Lemon is a false lead.' },
     { grade: 'field', text: 'The suspects avoided anywhere that sounds like a gangster would write it on a business card.' },
     { grade: 'confirmed', text: 'The diamonds were not taken underground into the cave.' },
-    { grade: 'field', text: 'CCTV caught no one entering Folderol. Tempting name. Wrong case.' },
-    { grade: 'witness', text: 'A witness remembers shelves and bottles, not tiny umbrellas or beer taps.' }
+    { grade: 'field', text: 'CCTV caught no one entering Folderol. Tempting name. Wrong case.' }
   ],
   [
     { grade: 'confirmed', text: 'The hideout begins with “La”. Very French. Suspiciously convenient.' },
     { grade: 'confirmed', text: 'The hideout is not mechanically orange, musically holy, or principally obvious.' },
-    { grade: 'field', text: 'A receipt found near the scene reads: “liquid assets”. This may be a joke. It may not be.' },
     { grade: 'confirmed', text: 'Final intelligence: the thieves are hiding at La Liquiderie.' }
   ]
 ];
+
+const STORAGE_VERSION = 'v9';
 
 const app = document.querySelector('#app');
 let state = loadState();
 
 function storageKey(teamId = state.teamId) {
-  return `hens-heist-${teamId || 'global'}`;
+  return `hens-heist-${STORAGE_VERSION}-${teamId || 'global'}`;
 }
 
 function loadState() {
-  const global = JSON.parse(localStorage.getItem('hens-heist-global') || '{}');
+  const global = JSON.parse(localStorage.getItem(`hens-heist-${STORAGE_VERSION}-global`) || '{}');
   if (!global.teamId) return { screen: 'welcome' };
 
-  const teamState = JSON.parse(localStorage.getItem(`hens-heist-${global.teamId}`) || '{}');
+  const teamState = JSON.parse(localStorage.getItem(`hens-heist-${STORAGE_VERSION}-${global.teamId}`) || '{}');
   return { screen: 'dashboard', teamId: global.teamId, ...teamState };
 }
 
 function saveState() {
   if (state.teamId) {
-    localStorage.setItem('hens-heist-global', JSON.stringify({ teamId: state.teamId }));
+    localStorage.setItem(`hens-heist-${STORAGE_VERSION}-global`, JSON.stringify({ teamId: state.teamId }));
     localStorage.setItem(storageKey(), JSON.stringify(state));
   }
 }
@@ -115,7 +111,7 @@ function buildTieredClues(teamId) {
 }
 
 function ensureTeamState(teamId) {
-  const saved = JSON.parse(localStorage.getItem(`hens-heist-${teamId}`) || 'null');
+  const saved = JSON.parse(localStorage.getItem(`hens-heist-${STORAGE_VERSION}-${teamId}`) || 'null');
   if (saved?.clues?.[0]?.grade) return saved;
 
   return {
@@ -190,7 +186,7 @@ function renderDashboard() {
 
   document.querySelector('#team-label').textContent = `Team ${team.name}`;
   document.querySelector('#completed-count').textContent = done;
-  document.querySelector('#progress-bar').style.width = `${(done / 15) * 100}%`;
+  document.querySelector('#progress-bar').style.width = `${(done / CHALLENGES.length) * 100}%`;
 
   document.querySelectorAll('.tab').forEach(button => {
     button.classList.toggle('active', button.dataset.tab === state.activeTab);
@@ -489,7 +485,7 @@ document.addEventListener('click', e => {
   if (action === 'reset') {
     if (confirm('Reset this team on this phone?')) {
       localStorage.removeItem(storageKey());
-      localStorage.removeItem('hens-heist-global');
+      localStorage.removeItem(`hens-heist-${STORAGE_VERSION}-global`);
       state = { screen: 'welcome' };
       render();
     }
