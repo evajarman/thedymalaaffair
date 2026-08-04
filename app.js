@@ -6,7 +6,8 @@ const TEAMS = [
 ];
 
 const CORRECT_BAR = 'La Liquiderie';
-const WHATSAPP = '‪+61 403 599 510‬';
+const WHATSAPP = '61 403 599 510';
+const WHATSAPP_URL = 'https://wa.me/61403599510';
 
 const GRADES = {
   confirmed: { label: 'Confirmed Intelligence', emoji: '🟢', className: 'confirmed', meaning: 'Verified by multiple sources. Treat this as fact.' },
