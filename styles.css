@@ -646,3 +646,11 @@ border:3px solid #fff8ef;
     min-width:0;
   }
 }
+.board-note{
+  margin:10px 0 0;
+  max-width:620px;
+  color:var(--muted);
+  font-family:"Inter",system-ui,sans-serif;
+  font-size:14px;
+  line-height:1.45;
+}
