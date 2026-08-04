@@ -311,20 +311,17 @@ function renderTab() {
       btn.dataset.challenge = idx;
 
       btn.innerHTML = `
-        <span class="card-inner">
-          <span class="card-front">
-            <b>Evidence ${idx + 1}</b>
-            ${c.text}
-            <span class="status">Submit evidence</span>
-          </span>
-          <span class="card-back">
-            <b>Evidence ${idx + 1}</b>
-            <strong>Completed</strong>
-            <em>Verified</em>
-          </span>
-        </span>
-      `;
-
+  <span class="card-inner">
+    <span class="card-front">
+      ${c.text}
+      <span class="status">Submit evidence</span>
+    </span>
+    <span class="card-back">
+      <strong>Completed</strong>
+      <em>Verified</em>
+    </span>
+  </span>
+`;
       grid.append(btn);
 
       if (c.justCompleted) {
