@@ -197,7 +197,7 @@ function seededShuffle(items, seedText) {
 
 function buildTieredClues(teamId) {
   return CLUE_TIERS.flatMap((tier, tierIndex) =>
-    seededShuffle(tier, `${teamId}-clues-tier-${tierIndex}`).map((clue, i) => ({
+    tier.map((clue, i) => ({
       ...clue,
       id: `${tierIndex}-${i}`,
       tier: tierIndex + 1,
