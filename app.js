@@ -10,68 +10,11 @@ const WHATSAPP = '61 403 599 510';
 const WHATSAPP_URL = 'https://wa.me/61403599510';
 
 const GRADES = {
-  police: {
-    label: 'Police Report',
-    emoji: '📁',
-    className: 'police',
-    meaning: 'Official information recorded by police. Accuracy may vary.'
-  },
-
-  witness: {
-    label: 'Witness Statement',
-    emoji: '👁',
-    className: 'witness',
-    meaning: 'An eyewitness account. Potentially useful, but not always reliable.'
-  },
-
-  forensic: {
-    label: 'Forensic Report',
-    emoji: '🔬',
-    className: 'field',
-    meaning: 'Evidence assessed by investigators and forensic specialists.'
-  },
-
-  street: {
-    label: 'Word on the Street',
-    emoji: '🤫',
-    className: 'anonymous',
-    meaning: 'Unofficial intelligence from an uncertain source. Proceed carefully.'
-  },
-
-  surveillance: {
-    label: 'Surveillance Photo',
-    emoji: '📸',
-    className: 'witness',
-    meaning: 'Visual evidence recovered during the investigation.'
-  },
-
-  city: {
-    label: 'City Intelligence',
-    emoji: '🗺',
-    className: 'confirmed',
-    meaning: 'Geographic intelligence used to narrow the search area.'
-  },
-
-  detective: {
-    label: 'Detective’s Notes',
-    emoji: '🕵',
-    className: 'field',
-    meaning: 'An investigator’s interpretation of the available evidence.'
-  },
-
-  building: {
-    label: 'Building Records',
-    emoji: '🏛',
-    className: 'confirmed',
-    meaning: 'Verified architectural or property information.'
-  },
-
-  final: {
-    label: 'Final Intelligence',
-    emoji: '🚨',
-    className: 'confirmed',
-    meaning: 'Conclusive intelligence. Act immediately.'
-  }
+  confirmed: { label: 'Confirmed Intelligence', emoji: '🟢', className: 'confirmed', meaning: 'Verified by multiple sources. Treat this as fact.' },
+  witness: { label: 'Witness Statement', emoji: '🟡', className: 'witness', meaning: 'Credible, but eyewitnesses are not perfect.' },
+  field: { label: 'Field Report', emoji: '🟠', className: 'field', meaning: 'Useful information from investigators. May include assumptions.' },
+  anonymous: { label: 'Anonymous Tip', emoji: '🔴', className: 'anonymous', meaning: 'Possibly useful. Possibly nonsense. Proceed carefully.' },
+  police: { label: 'French Police File', emoji: '⚫', className: 'police', meaning: 'Officially documented. Surprisingly unhelpful.' }
 };
 
 const CHALLENGES = [
@@ -98,57 +41,57 @@ const BARS = [
 const CLUE_TIERS = [
   [
     {
-      grade: 'police',
-      text: 'Paris police confirm the thieves remained within the city limits. Helpful.'
+      grade: 'anonymous',
+      text: 'A tip confirm the thieves remained within the city limits. Helpful.'
     },
     {
-      grade: 'witness',
-      text: 'One witness recalls hearing English spoken after the robbery.'
+      grade: 'anonymous',
+      text: 'A tip recalls hearing English spoken after the robbery.'
     },
     {
-      grade: 'forensic',
+      grade: 'anonymous',
       text: 'Footwear impressions suggest the suspects walked rather than taking scooters.'
     },
     {
-      grade: 'street',
+      grade: 'field',
       text: 'The hideout is only accessible with a secret key: an empty bottle of wine that has been split between the group.'
     },
     {
-      grade: 'police',
+      grade: 'field',
       text: 'Detectives have ruled out every suspect venue south of the Seine.'
     },
     {
-      grade: 'surveillance',
+      grade: 'field',
       text: 'CCTV confirms the thieves entered a commercial building before disappearing.'
     },
     {
-      grade: 'city',
+      grade: 'witness',
       text: 'Intelligence now places the suspects somewhere in eastern Paris.'
     },
     {
-      grade: 'detective',
+      grade: 'witness',
       text: 'The thieves deliberately chose a venue that rewards those willing to make a little effort to reach it.'
     }
   ],
 
   [
     {
-      grade: 'building',
+      grade: 'confirmed',
       text: 'Building records indicate the hideout occupies the upper levels of the premises.'
     },
     {
-      grade: 'surveillance',
+      grade: 'confirmed',
       text: 'A witness captured Sacré-Cœur in the background while photographing the suspects.'
     },
     {
-      grade: 'city',
+      grade: 'police',
       text: 'Intelligence confirms the hideout is in Ménilmontant.'
     }
   ],
 
   [
     {
-      grade: 'final',
+      grade: 'police',
       text: 'The thieves are hiding at Le Perchoir Ménilmontant. Proceed immediately.'
     }
   ]
