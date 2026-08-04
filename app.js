@@ -10,11 +10,68 @@ const WHATSAPP = '61 403 599 510';
 const WHATSAPP_URL = 'https://wa.me/61403599510';
 
 const GRADES = {
-  confirmed: { label: 'Confirmed Intelligence', emoji: '🟢', className: 'confirmed', meaning: 'Verified by multiple sources. Treat this as fact.' },
-  witness: { label: 'Witness Statement', emoji: '🟡', className: 'witness', meaning: 'Credible, but eyewitnesses are not perfect.' },
-  field: { label: 'Field Report', emoji: '🟠', className: 'field', meaning: 'Useful information from investigators. May include assumptions.' },
-  anonymous: { label: 'Anonymous Tip', emoji: '🔴', className: 'anonymous', meaning: 'Possibly useful. Possibly nonsense. Proceed carefully.' },
-  police: { label: 'French Police File', emoji: '⚫', className: 'police', meaning: 'Officially documented. Surprisingly unhelpful.' }
+  police: {
+    label: 'Police Report',
+    emoji: '📁',
+    className: 'police',
+    meaning: 'Official information recorded by police. Accuracy may vary.'
+  },
+
+  witness: {
+    label: 'Witness Statement',
+    emoji: '👁',
+    className: 'witness',
+    meaning: 'An eyewitness account. Potentially useful, but not always reliable.'
+  },
+
+  forensic: {
+    label: 'Forensic Report',
+    emoji: '🔬',
+    className: 'field',
+    meaning: 'Evidence assessed by investigators and forensic specialists.'
+  },
+
+  street: {
+    label: 'Word on the Street',
+    emoji: '🤫',
+    className: 'anonymous',
+    meaning: 'Unofficial intelligence from an uncertain source. Proceed carefully.'
+  },
+
+  surveillance: {
+    label: 'Surveillance Photo',
+    emoji: '📸',
+    className: 'witness',
+    meaning: 'Visual evidence recovered during the investigation.'
+  },
+
+  city: {
+    label: 'City Intelligence',
+    emoji: '🗺',
+    className: 'confirmed',
+    meaning: 'Geographic intelligence used to narrow the search area.'
+  },
+
+  detective: {
+    label: 'Detective’s Notes',
+    emoji: '🕵',
+    className: 'field',
+    meaning: 'An investigator’s interpretation of the available evidence.'
+  },
+
+  building: {
+    label: 'Building Records',
+    emoji: '🏛',
+    className: 'confirmed',
+    meaning: 'Verified architectural or property information.'
+  },
+
+  final: {
+    label: 'Final Intelligence',
+    emoji: '🚨',
+    className: 'confirmed',
+    meaning: 'Conclusive intelligence. Act immediately.'
+  }
 };
 
 const CHALLENGES = [
@@ -40,22 +97,60 @@ const BARS = [
 
 const CLUE_TIERS = [
   [
-    { grade: 'police', text: 'Paris police report that the suspects “went somewhere.” This has been filed as progress.' },
-    { grade: 'witness', text: 'A witness insists the thieves stayed within easy walking distance of Le Carreau.' },
-    { grade: 'confirmed', text: 'The thieves chose somewhere where the drinks matter more than dinner.' },
-    { grade: 'anonymous', text: 'A local claims one suspect fled on an electric scooter while looking “suspiciously pleased”.' },
-    { grade: 'field', text: 'Investigators can safely rule out the rooftop option.' }
+    {
+      grade: 'police',
+      text: 'Paris police confirm the thieves remained within the city limits. Helpful.'
+    },
+    {
+      grade: 'witness',
+      text: 'One witness recalls hearing English spoken after the robbery.'
+    },
+    {
+      grade: 'forensic',
+      text: 'Footwear impressions suggest the suspects walked rather than taking scooters.'
+    },
+    {
+      grade: 'street',
+      text: 'The hideout is only accessible with a secret key: an empty bottle of wine that has been split between the group.'
+    },
+    {
+      grade: 'police',
+      text: 'Detectives have ruled out every suspect venue south of the Seine.'
+    },
+    {
+      grade: 'surveillance',
+      text: 'CCTV confirms the thieves entered a commercial building before disappearing.'
+    },
+    {
+      grade: 'city',
+      text: 'Intelligence now places the suspects somewhere in eastern Paris.'
+    },
+    {
+      grade: 'detective',
+      text: 'The thieves deliberately chose a venue that rewards those willing to make a little effort to reach it.'
+    }
   ],
+
   [
-    { grade: 'confirmed', text: 'The getaway did not involve citrus. Dirty Lemon is a false lead.' },
-    { grade: 'field', text: 'The suspects avoided anywhere that sounds like a gangster would write it on a business card.' },
-    { grade: 'confirmed', text: 'The diamonds were not taken underground into the cave.' },
-    { grade: 'field', text: 'CCTV caught no one entering Folderol. Tempting name. Wrong case.' }
+    {
+      grade: 'building',
+      text: 'Building records indicate the hideout occupies the upper levels of the premises.'
+    },
+    {
+      grade: 'surveillance',
+      text: 'A witness captured Sacré-Cœur in the background while photographing the suspects.'
+    },
+    {
+      grade: 'city',
+      text: 'Intelligence confirms the hideout is in Ménilmontant.'
+    }
   ],
+
   [
-    { grade: 'confirmed', text: 'The hideout begins with “La”. Very French. Suspiciously convenient.' },
-    { grade: 'confirmed', text: 'The hideout is not mechanically orange, musically holy, or principally obvious.' },
-    { grade: 'confirmed', text: 'Final intelligence: the thieves are hiding at La Liquiderie.' }
+    {
+      grade: 'final',
+      text: 'The thieves are hiding at Le Perchoir Ménilmontant. Proceed immediately.'
+    }
   ]
 ];
 
@@ -437,7 +532,7 @@ function guessBar(bar) {
     saveState();
     showResult(
       'Case closed',
-      'The Dymala Affair is solved. Proceed inside La Liquiderie to claim the liberated cocktails.',
+      'The Dymala Affair is solved. Proceed inside La Perchoir to claim the liberated cocktails.',
       true
     );
   } else {
