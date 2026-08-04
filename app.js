@@ -5,7 +5,7 @@ const TEAMS = [
   { id: 'sherlock', name: 'Sherlock Holmes', emoji: '🔎', quote: '“The game is afoot.”' }
 ];
 
-const CORRECT_BAR = 'La Liquiderie';
+const CORRECT_BAR = 'La Perchoir';
 const WHATSAPP = '61 403 599 510';
 const WHATSAPP_URL = 'https://wa.me/61403599510';
 
